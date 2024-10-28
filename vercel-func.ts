@@ -2,7 +2,7 @@ import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { AppModule } from './dist/app.module';
+import { AppModule } from './src/app.module';
 
 // Keep the app instance in memory for subsequent requests
 let app;
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     app = await NestFactory.create(AppModule);
 
     app.enableCors({
-      origin: process.env.CORS_ORIGINS || true,
+      origin: true,
       credentials: true,
     });
 
