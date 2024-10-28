@@ -9,14 +9,14 @@
       }
     },
     {
-      "src": "vercel-func.js",
+      "src": "vercel-func.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "vercel-func.js"
+      "dest": "vercel-func.ts"
     }
   ]
 }
