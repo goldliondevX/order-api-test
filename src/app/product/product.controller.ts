@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from 'src/model/product.entity';
-import { JwtAuthGuard } from 'src/utils/jwt-auth.guard';
+import { JwtAuthGuard } from '../../utils/jwt-auth.guard';
 import {
   ApiTags,
   ApiOperation,
