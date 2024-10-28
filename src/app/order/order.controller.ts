@@ -28,6 +28,7 @@ export class OrderController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new order' })
+  @ApiBearerAuth()
   @ApiBody({
     schema: {
       properties: {
@@ -50,6 +51,7 @@ export class OrderController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve order by ID' })
+  @ApiBearerAuth()
   @ApiParam({ name: 'id', type: 'number', description: 'The ID of the order' })
   @ApiResponse({
     status: 200,
@@ -62,6 +64,7 @@ export class OrderController {
 
   @Get()
   @ApiOperation({ summary: 'Retrieve all orders' })
+  @ApiBearerAuth()
   @ApiResponse({ status: 200, description: 'List of all orders' })
   findAll() {
     return this.orderService.findAll();
@@ -69,6 +72,7 @@ export class OrderController {
 
   @Put(':id')
   @ApiOperation({ summary: 'Update an order by ID' })
+  @ApiBearerAuth()
   @ApiParam({
     name: 'id',
     type: 'number',
@@ -93,6 +97,7 @@ export class OrderController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete an order by ID' })
+  @ApiBearerAuth()
   @ApiParam({
     name: 'id',
     type: 'number',

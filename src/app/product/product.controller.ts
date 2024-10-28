@@ -22,13 +22,14 @@ import {
 
 @Controller('products')
 @ApiTags('products') // Group under 'products' in Swagger UI
-@ApiBearerAuth() // Requires JWT token for all endpoints
+@ApiBearerAuth() // Globally requires JWT token for all endpoints
 @UseGuards(JwtAuthGuard)
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new product' })
+  @ApiBearerAuth()
   @ApiBody({
     schema: {
       properties: {
@@ -45,6 +46,7 @@ export class ProductController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve product by ID' })
+  @ApiBearerAuth()
   @ApiParam({ name: 'id', type: 'number', description: 'Product ID' })
   @ApiResponse({ status: 200, description: 'Product retrieved successfully' })
   @ApiResponse({ status: 404, description: 'Product not found' })
@@ -54,6 +56,7 @@ export class ProductController {
 
   @Get('search/:name')
   @ApiOperation({ summary: 'Search products by name' })
+  @ApiBearerAuth()
   @ApiParam({ name: 'name', type: 'string', description: 'Product name' })
   @ApiResponse({ status: 200, description: 'List of matching products' })
   findByName(@Param('name') name: string): Promise<Product[]> {
@@ -62,6 +65,7 @@ export class ProductController {
 
   @Get()
   @ApiOperation({ summary: 'Retrieve all products' })
+  @ApiBearerAuth()
   @ApiResponse({ status: 200, description: 'List of all products' })
   findAll(): Promise<Product[]> {
     return this.productService.findAll();
@@ -69,6 +73,7 @@ export class ProductController {
 
   @Put(':id')
   @ApiOperation({ summary: 'Update a product by ID' })
+  @ApiBearerAuth()
   @ApiParam({ name: 'id', type: 'number', description: 'Product ID' })
   @ApiBody({
     schema: {
@@ -89,6 +94,7 @@ export class ProductController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a product by ID' })
+  @ApiBearerAuth()
   @ApiParam({ name: 'id', type: 'number', description: 'Product ID' })
   @ApiResponse({ status: 200, description: 'Product deleted successfully' })
   @ApiResponse({ status: 404, description: 'Product not found' })
