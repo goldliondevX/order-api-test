@@ -10,6 +10,14 @@ async function bootstrap() {
     .setTitle('Order Management API')
     .setDescription('API for managing orders')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'JWT-auth', // This name can be anything, but it should match your guard if specified
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
